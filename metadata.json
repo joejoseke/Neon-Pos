@@ -1,0 +1,5 @@
+{
+  "name": "Neon POS - Nightclub Point of Sale",
+  "description": "A sleek, modern Point of Sale (POS) system designed for a nightclub, featuring a Gemini-powered cocktail suggestion engine ('Vibe Check') to enhance customer experience and streamline ordering.",
+  "requestFramePermissions": []
+}

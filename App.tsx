@@ -110,13 +110,17 @@ const App: React.FC = () => {
     const handlePrintBill = useCallback(() => {
         if (cart.length === 0) return;
         setPrintingMode('bill');
-        setTimeout(() => window.print(), 50);
     }, [cart]);
+
+    useEffect(() => {
+        if (printingMode) {
+            window.print();
+        }
+    }, [printingMode]);
 
     const handlePrintOrder = useCallback(() => {
         if (cart.length === 0) return;
         setPrintingMode('order');
-        setTimeout(() => window.print(), 50);
     }, [cart]);
 
     const filteredProducts = useMemo(() => {
@@ -135,16 +139,16 @@ const App: React.FC = () => {
             <div className={`min-h-screen bg-slate-900 text-white font-sans flex flex-col ${printingMode ? 'print:hidden' : ''}`}>
                 <header className="bg-slate-900/80 backdrop-blur-sm sticky top-0 z-10 p-4 border-b border-slate-700/50">
                     <div className="flex justify-between items-center">
-                        <h1 className="text-2xl font-bold text-cyan-400 tracking-wider">
+                        <h1 className="text-xl sm:text-2xl font-bold text-cyan-400 tracking-wider">
                             NEON <span className="text-pink-500">POS</span>
                         </h1>
-                        <div className="flex items-center gap-4">
+                        <div className="flex items-center gap-2 sm:gap-4">
                             <button
                                 onClick={() => setIsVibeCheckOpen(true)}
                                 className="flex items-center gap-2 bg-gradient-to-r from-pink-500 to-purple-600 text-white font-semibold px-4 py-2 rounded-lg shadow-lg hover:scale-105 transform transition-transform duration-200"
                             >
                                 <SparklesIcon className="w-5 h-5" />
-                                Vibe Check
+                                <span className="hidden sm:inline">Vibe Check</span>
                             </button>
                             <button
                                 onClick={handleLogout}
@@ -152,7 +156,7 @@ const App: React.FC = () => {
                                 aria-label="Logout"
                             >
                                 <LockIcon className="w-5 h-5" />
-                                <span>Logout</span>
+                                <span className="hidden sm:inline">Logout</span>
                             </button>
                         </div>
                     </div>
